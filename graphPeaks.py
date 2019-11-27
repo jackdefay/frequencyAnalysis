@@ -18,14 +18,14 @@ def f(filename):
     #iterate through slices and perform fft's. add to a list
     i=1
     sliceList = []
-    while(i<len(b)//(fs/10)):
-        slice = fft(b[(i-1)*(fs//10):(i)*(fs//10)])
+    while(i<len(b)//(fs/20)):
+        slice = fft(b[(i-1)*(fs//20):(i)*(fs//20)])
         sliceList.append(abs(slice[:round(len(slice)/2)]))
         i+=1
 
     #set up the xscaler from index number to frequency
-    k = scipy.arange(len(slice)/2)
-    T = len(slice)/(2*fs)  # where fs is the sampling frequency
+    k = scipy.arange(len(slice))
+    T = len(slice)/(fs)  # where fs is the sampling frequency
     frqLabel = k/T
     listFrqLabel = np.ndarray.tolist(frqLabel)
 
