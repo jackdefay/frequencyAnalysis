@@ -3,6 +3,7 @@ import numpy as np
 import scipy
 import projectlabMax as max
 import reoderPeakDictionary as reorder
+import os
 
 from scipy.fftpack import fft
 from scipy.io import wavfile # get the api
@@ -43,11 +44,13 @@ def f(filename):
 
     fig, ax = plt.subplots()
     for i in range(len(graphPeaks)):
-        ax.plot(graphPeaks[i])
-    plt.xlabel("Hz", fontsize=15)
+        xlist = np.arange(0, len(graphPeaks[i]), 0.05).tolist()[0:len(graphPeaks[i])]
+        ax.plot(xlist, graphPeaks[i])
+    plt.xlabel("Time (s)", fontsize=15)
+    plt.ylabel("Volume", fontsize=15)
     # plt.xlim((1, 10000))
-    # plt.xscale('log')
-    plt.title("384 Hz, first take")
+    # plt.yscale('log')
+    plt.title(os.path.splitext(filename)[0])
     plt.legend(peakFrqList)
     # plt.show()
 
